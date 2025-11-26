@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía - Sistema de Gestión para Librería Paquito</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-blue: #4A6FDC;
+            --primary-purple: #8B5FBF;
+            --secondary-blue: #6B8DE3;
+            --secondary-purple: #9D7AC9;
+            --light-bg: #F8F7FC;
+            --dark-text: #2D3748;
+            --light-text: #718096;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--light-bg) 0%, #FFFFFF 100%);
+            color: var(--dark-text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            color: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(74, 111, 220, 0.3);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 20px;
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--secondary-blue), var(--secondary-purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(74, 111, 220, 0.1);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(74, 111, 220, 0.15);
+        }
+        
+        .card h2 {
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(74, 111, 220, 0.2);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card h2 i {
+            color: var(--primary-purple);
+        }
+        
+        .card h3 {
+            color: var(--primary-purple);
+            margin: 15px 0 10px;
+            font-size: 1.2rem;
+        }
+        
+        .card ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .card li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 10px;
+        }
+        
+        .card li::before {
+            content: '•';
+            color: var(--primary-blue);
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, rgba(74, 111, 220, 0.1), rgba(139, 95, 191, 0.1));
+            border-left: 4px solid var(--primary-purple);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .team-section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            border: 1px solid rgba(74, 111, 220, 0.1);
+        }
+        
+        .team-section h2 {
+            color: var(--primary-blue);
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+        
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+        }
+        
+        .member {
+            text-align: center;
+            padding: 20px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(74, 111, 220, 0.05), rgba(139, 95, 191, 0.05));
+            width: 200px;
+            transition: transform 0.3s ease;
+        }
+        
+        .member:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(74, 111, 220, 0.15);
+        }
+        
+        .member-name {
+            font-weight: bold;
+            color: var(--primary-blue);
+            margin-bottom: 5px;
+        }
+        
+        .member-role {
+            color: var(--primary-purple);
+            font-size: 0.9rem;
+        }
+        
+        .diagram-section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            border: 1px solid rgba(74, 111, 220, 0.1);
+        }
+        
+        .diagram-section h2 {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+        
+        .diagram-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .diagram {
+            flex: 1;
+            min-width: 300px;
+            background: var(--light-bg);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .diagram-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--secondary-blue), var(--secondary-purple));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .diagram h3 {
+            color: var(--primary-purple);
+            margin-bottom: 10px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 30px;
+            color: var(--light-text);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(74, 111, 220, 0.2);
+        }
+        
+        .tag {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(74, 111, 220, 0.1), rgba(139, 95, 191, 0.1));
+            color: var(--primary-blue);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin: 5px 5px 5px 0;
+            border: 1px solid rgba(74, 111, 220, 0.2);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+        }
+        
+        @media (max-width: 768px) {
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-members {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .member {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo-container">
+                <div class="logo">DISEÑO PACHAMAMICO</div>
+            </div>
+            <h1>Sistema de Gestión para Librería Paquito</h1>
+            <p>Control de ventas e inventario automatizado</p>
+        </div>
+        
+        <div class="card-container">
+            <div class="card">
+                <h2>📊 Problema Identificado</h2>
+                <p>La librería Paquito enfrenta dificultades en el registro de ventas e inventario:</p>
+                <ul>
+                    <li>Registro manual en Excel que consume tiempo</li>
+                    <li>Falta de control preciso sobre productos vendidos</li>
+                    <li>Dificultad para identificar productos agotados</li>
+                    <li>Pérdida de información en ventas múltiples</li>
+                </ul>
+                <div class="highlight">
+                    <p><strong>"Hay veces en la que ya no registra uno o más artículos y solo lo anota como 'Varios'"</strong></p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>🚀 Solución Propuesta</h2>
+                <p>Sistema de información para automatizar procesos:</p>
+                <ul>
+                    <li>Gestión centralizada de inventario</li>
+                    <li>Registro rápido de ventas</li>
+                    <li>Alertas de stock mínimo</li>
+                    <li>Reportes automáticos de ventas</li>
+                    <li>Interfaz intuitiva y fácil de usar</li>
+                </ul>
+                <div class="highlight">
+                    <p><strong>Objetivo:</strong> Optimizar tiempo y mejorar el control de inventario</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>⚙️ Características Principales</h2>
+                <h3>Funcionales</h3>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">U</div>
+                        <span>Gestión de usuarios</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">P</div>
+                        <span>Gestión de productos</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">I</div>
+                        <span>Control de inventario</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">C</div>
+                        <span>Gestión de clientes</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">V</div>
+                        <span>Gestión de ventas</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">R</div>
+                        <span>Reportes básicos</span>
+                    </div>
+                </div>
+                
+                <h3>No Funcionales</h3>
+                <ul>
+                    <li>Interfaz intuitiva (máximo 3 clics)</li>
+                    <li>Respuesta en menos de 2 segundos</li>
+                    <li>Seguridad con encriptación</li>
+                    <li>Alta disponibilidad (99%)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="diagram-section">
+            <h2>📐 Diagramas del Sistema</h2>
+            <div class="diagram-container">
+                <div class="diagram">
+                    <div class="diagram-placeholder">Diagrama de Casos de Uso</div>
+                    <h3>Casos de Uso</h3>
+                    <p>Interacción entre usuarios y sistema</p>
+                </div>
+                <div class="diagram">
+                    <div class="diagram-placeholder">Modelo Conceptual BD</div>
+                    <h3>Modelo Conceptual</h3>
+                    <p>Estructura inicial de base de datos</p>
+                </div>
+                <div class="diagram">
+                    <div class="diagram-placeholder">Modelo Físico BD</div>
+                    <h3>Modelo Físico</h3>
+                    <p>Implementación final de base de datos</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card-container">
+            <div class="card">
+                <h2>💻 Tecnologías Utilizadas</h2>
+                <div class="highlight">
+                    <p><strong>Base de Datos:</strong> SQL Server</p>
+                    <p><strong>Desarrollo:</strong> Visual Studio</p>
+                    <p><strong>Sistema Operativo:</strong> Windows 10+</p>
+                    <p><strong>Resolución Mínima:</strong> 1280×720</p>
+                </div>
+                
+                <h3>Etiquetas del Proyecto</h3>
+                <div>
+                    <span class="tag">Librería</span>
+                    <span class="tag">Control de inventario</span>
+                    <span class="tag">Registro de ventas</span>
+                    <span class="tag">Base de datos</span>
+                    <span class="tag">Diseño de software</span>
+                    <span class="tag">Visual Studio</span>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>🗃️ Estructura de Base de Datos</h2>
+                <p>Modelo relacional con 10 tablas principales:</p>
+                <ul>
+                    <li>Usuario</li>
+                    <li>Producto</li>
+                    <li>Categoría</li>
+                    <li>Proveedor</li>
+                    <li>Cliente</li>
+                    <li>Venta</li>
+                    <li>DetalleVenta</li>
+                    <li>Compra</li>
+                    <li>DetalleCompra</li>
+                    <li>MétodoPago</li>
+                </ul>
+                <div class="highlight">
+                    <p><strong>Base de datos:</strong> "tiendas"</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>📈 Beneficios Esperados</h2>
+                <ul>
+                    <li>Reducción del tiempo de registro en 70%</li>
+                    <li>Eliminación de errores en inventario</li>
+                    <li>Información en tiempo real para toma de decisiones</li>
+                    <li>Mejora en la atención al cliente</li>
+                    <li>Optimización del proceso de reposición</li>
+                </ul>
+                
+                <div class="highlight">
+                    <p><strong>Objetivo Principal:</strong> Automatizar el registro de inventario y agilizar las ventas para mejorar la eficiencia operativa de la librería.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="team-section">
+            <h2>👥 Equipo de Desarrollo</h2>
+            <div class="team-members">
+                <div class="member">
+                    <div class="member-name">Manya Carreño, Neil Steve</div>
+                    <div class="member-role">Desarrollador</div>
+                    <div>100%</div>
+                </div>
+                <div class="member">
+                    <div class="member-name">Gutierrez Ruiz, Diego Isaias</div>
+                    <div class="member-role">Desarrollador</div>
+                    <div>100%</div>
+                </div>
+                <div class="member">
+                    <div class="member-name">Pastor Quispe, Oscar Jhosue</div>
+                    <div class="member-role">Desarrollador</div>
+                    <div>100%</div>
+                </div>
+                <div class="member">
+                    <div class="member-name">Quispirroca Bejarano, Joaquin Alessandro</div>
+                    <div class="member-role">Desarrollador</div>
+                    <div>100%</div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 20px; font-style: italic; color: var(--primary-purple);">Equipo: DISEÑO PACHAMAMICO</p>
+        </div>
+        
+        <div class="footer">
+            <p>Proyecto de Sistema de Información - Facultad de Ingeniería - Escuela Profesional de Ingeniería de Sistemas</p>
+            <p>Cusco - Perú, 2025</p>
+        </div>
+    </div>
+</body>
+</html>
